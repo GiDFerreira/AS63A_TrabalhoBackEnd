@@ -38,7 +38,7 @@ const PersonagemModel = sequelize.define('Personagem', {
 });
 
 
-sequelize.sync()
+sequelize.sync({ force: true })
   .then(() => {
     console.log('Modelo de Personagem sincronizado com o banco de dados.');
   })
@@ -47,4 +47,7 @@ sequelize.sync()
   });
 
 
-module.exports = PersonagemModel;
+  module.exports = {
+    sequelize: sequelize,
+    PersonagemModel: PersonagemModel,
+  };
