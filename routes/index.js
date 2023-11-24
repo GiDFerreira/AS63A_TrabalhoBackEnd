@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const PersonagemService = require('../model/personagem'); // Certifique-se de ajustar o caminho correto
+const PersonagemService = require('../model/personagem');
 
 // SAVE
 router.post('/personagens', async (req, res) => {
@@ -15,7 +15,10 @@ router.post('/personagens', async (req, res) => {
 // GET) Listagem geral
 router.get('/personagens', async (req, res) => {
   try {
-    const listaPersonagens = await PersonagemService.listarPersonagens();
+    const limite = parseInt(req.query.limite) || 10; 
+    const pagina = parseInt(req.query.pagina) || 1; 
+
+    const listaPersonagens = await PersonagemService.listarPersonagens(limite, pagina);
     res.json({ personagens: listaPersonagens });
   } catch (error) {
     res.status(500).json({ mensagem: 'Erro ao listar personagens', erro: error.message });
@@ -36,6 +39,33 @@ router.get('/personagens/:id', async (req, res) => {
   }
 });
 
+// UPDATE
+router.put('/personagens/:id', async (req, res) => {
+  try {
+    const personagemAtualizado = await PersonagemService.atualizarPersonagem(req.params.id, req.body);
+    if (personagemAtualizado) {
+      res.json({ personagem: personagemAtualizado });
+    } else {
+      res.status(404).json({ mensagem: 'Personagem não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro ao atualizar personagem', erro: error.message });
+  }
+});
 
+
+// DELETE
+router.delete('/personagens/:id', async (req, res) => {
+  try {
+    const personagemExcluido = await PersonagemService.deletarPersonagem(req.params.id);
+    if (personagemExcluido) {
+      res.json({ personagem: personagemExcluido });
+    } else {
+      res.status(404).json({ mensagem: 'Personagem não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ mensagem: 'Erro ao excluir personagem', erro: error.message });
+  }
+});
 
 module.exports = router;
