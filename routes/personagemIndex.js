@@ -53,7 +53,6 @@ router.put('/personagens/:id', async (req, res) => {
   }
 });
 
-
 // DELETE
 router.delete('/personagens/:id', async (req, res) => {
   try {

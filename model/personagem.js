@@ -19,8 +19,8 @@ module.exports = {
       offset: offset,
     });
 
-    return personagens;
-  },
+        return personagens;
+    },
 
     async encontrarPersonagem(id) {
         const personagem = await PersonagemModel.findByPk(id);

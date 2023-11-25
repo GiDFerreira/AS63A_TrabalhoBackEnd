@@ -37,6 +37,53 @@ const PersonagemModel = sequelize.define('Personagem', {
   },
 });
 
+const MestreModel = sequelize.define('Mestre', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  nomeJogo: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+});
+
+const JogadorModel = sequelize.define('Jogador', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  experiencia: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  }
+});
+
+const AnimalModel = sequelize.define('Animal', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+  nome: {
+    type: DataTypes.STRING,
+    allowNull: false, 
+  },
+  vida: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
+})
 
 sequelize.sync({ force: true })
   .then(() => {
@@ -46,8 +93,14 @@ sequelize.sync({ force: true })
     console.error('Erro ao sincronizar o modelo com o banco de dados:', err);
   });
 
+  PersonagemModel.belongsTo(JogadorModel)
+  MestreModel.hasMany(PersonagemModel)
+  AnimalModel.belongsTo(PersonagemModel)
 
   module.exports = {
     sequelize: sequelize,
     PersonagemModel: PersonagemModel,
+    MestreModel: MestreModel,
+    JogadorModel: JogadorModel,
+    AnimalModel: AnimalModel,
   };
