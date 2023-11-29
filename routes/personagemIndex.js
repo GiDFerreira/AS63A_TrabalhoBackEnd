@@ -67,4 +67,29 @@ router.delete('/personagens/:id', async (req, res) => {
   }
 });
 
+// OPERAÇÃO ESPECIAL
+router.get('personagens/:idade/:raca/:nivel', async (req, res) => {
+  try {
+    const {idade, raca, nivel} = req.params;
+    const personagens = await PersonagemModel.findAll({
+      where: {
+        idade: {
+          [Sequelize.Op.gte]: idade,
+        },
+        raca: raca,
+        nivel: {
+          [Sequelize.Op.gte]: nivel,
+        },
+      },
+    });
+
+    res.json(personagens);
+
+  } catch {
+    console.error('Erro ao buscar personagens:', error);
+    res.status(500).send('Erro interno do servidor');
+  }
+  
+});
+
 module.exports = router;

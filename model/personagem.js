@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async deletarPersonagem(personagemId) {
-        const personagemRemovido = await PersonagemModel.destroy(personagemId, {
+        const personagemRemovido = await PersonagemModel.destroy({
             where: { id: personagemId }
         });
 

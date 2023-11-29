@@ -5,7 +5,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const routes = require('./routes/personagemIndex');
 
+// 4 cruds
 var personagemRouter = require('./routes/personagemIndex');
+var jogadorRouter = require('./routes/jogadorIndex');
+var mestreRouter = require('./routes/mestreIndex');
+var animalRouter = require('./routes/animalIndex');
 
 var app = express();
 
@@ -18,7 +22,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', personagemRouter);
+// 4 cruds
+app.use('/personagem', personagemRouter);
+app.use('/jogador', jogadorRouter);
+app.use('/mestre', mestreRouter);
+app.use('/animal', animalRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

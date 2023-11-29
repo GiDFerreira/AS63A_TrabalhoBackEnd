@@ -3,7 +3,7 @@ const { MestreModel } = require('./bd');
 const LIMITES_PERMITIDOS = [5, 10, 30];
 
 module.exports = {
-    async criarMestre(personagemData) {
+    async criarMestre(mestreData) {
         const mestre = await MestreModel.create(mestreData);
         return mestre;
     },
@@ -33,7 +33,7 @@ module.exports = {
         });
 
         if (atualizacoes > 0) {
-            const mestreAtualizado = await PersonagemModel.findByPk(mestreId);
+            const mestreAtualizado = await MestreModel.findByPk(mestreId);
             return mestreAtualizado;
         }
 
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async excluirMestre(mestreId) {
-        const MestreRemovido = await MestreModel.destroy(mestreId, {
+        const MestreRemovido = await MestreModel.destroy({
             where: {id : mestreId}
         });
 

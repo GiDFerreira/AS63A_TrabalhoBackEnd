@@ -87,10 +87,10 @@ const AnimalModel = sequelize.define('Animal', {
 
 sequelize.sync({ force: true })
   .then(() => {
-    console.log('Modelo de Personagem sincronizado com o banco de dados.');
+    console.log('Modelos sincronizados com o banco de dados.');
   })
   .catch((err) => {
-    console.error('Erro ao sincronizar o modelo com o banco de dados:', err);
+    console.error('Erro ao sincronizar os modelos com o banco de dados:', err);
   });
 
   PersonagemModel.belongsTo(JogadorModel)

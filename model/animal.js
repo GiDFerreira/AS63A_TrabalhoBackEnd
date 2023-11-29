@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async excluirAnimal(animalId) {
-        const animalRemovido = await AnimalModel.destroy(animalId, {
+        const animalRemovido = await AnimalModel.destroy({
             where: {id : animalId}
         });
 

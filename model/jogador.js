@@ -4,7 +4,7 @@ const LIMITES_PERMITIDOS = [5, 10, 30];
 
 module.exports = {
     async criarJogador(jogadorData) {
-        const jogador = await MestreModel.create(jogadorData);
+        const jogador = await JogadorModel.create(jogadorData);
         return jogador;
     },
 
@@ -41,7 +41,7 @@ module.exports = {
     },
 
     async excluirJogador(jogadorId) {
-        const jogadorRemovido = await JogadorModel.destroy(jogadorId, {
+        const jogadorRemovido = await JogadorModel.destroy({
             where: {id : jogadorId}
         });
 
