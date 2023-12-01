@@ -68,4 +68,7 @@ router.delete('/personagens/:id', async (req, res) => {
   }
 });
 
+//Usuários
+
+
 module.exports = router;

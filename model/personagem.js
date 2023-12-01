@@ -9,18 +9,18 @@ module.exports = {
     },
 
     async listarPersonagens(limite = 10, pagina = 1) {
-    if (!LIMITES_PERMITIDOS.includes(limite)) {
-      throw new Error('Limite inválido. Valores permitidos: 5, 10, 30');
-    }
+        if (!LIMITES_PERMITIDOS.includes(limite)) {
+        throw new Error('Limite inválido. Valores permitidos: 5, 10, 30');
+        }
 
-    const offset = (pagina - 1) * limite;
-    const personagens = await PersonagemModel.findAll({
-      limit: limite,
-      offset: offset,
-    });
+        const offset = (pagina - 1) * limite;
+        const personagens = await PersonagemModel.findAll({
+        limit: limite,
+        offset: offset,
+        });
 
-    return personagens;
-  },
+        return personagens;
+    },
 
     async encontrarPersonagem(id) {
         const personagem = await PersonagemModel.findByPk(id);

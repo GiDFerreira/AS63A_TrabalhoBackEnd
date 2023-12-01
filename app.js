@@ -6,11 +6,15 @@ var logger = require('morgan');
 const routes = require('./routes');
 
 var indexRouter = require('./routes/index');
+var rotaUsuarios = require('./routes/users');
 
 var app = express();
 
 app.use(express.json());
 app.use('/', routes);
+
+//Usuário
+app.use('/usuarios', rotaUsuarios);
 
 app.use(logger('dev'));
 
