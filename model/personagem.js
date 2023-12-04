@@ -46,6 +46,36 @@ module.exports = {
         });
 
         return personagemRemovido;
-    }
+    },
+
+    async mostrarInformacoes(racaPersonagem) {
+        const totalPersonagens = await PersonagemModel.count({
+            where: {
+              raca: racaPersonagem,
+            },
+        });
+
+        const idadeMaisVelha = await PersonagemModel.max('idade', {
+            where: {
+              raca: racaPersonagem,
+            },
+        });
+      
+          // Consulta para obter a idade mais jovem
+        const idadeMaisJovem = await PersonagemModel.min('idade', {
+            where: {
+              raca: racaPersonagem,
+            },
+        });
+
+        const informacoesExtras = {
+            totalPersonagens: totalPersonagens,
+            idadeMaisVelha: idadeMaisVelha,
+            idadeMaisJovem: idadeMaisJovem,
+        };
+
+        return informacoesExtras;
+      
+    },
 
 };
