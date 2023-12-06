@@ -5,32 +5,17 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const routes = require('./routes/personagemIndex');
 
-<<<<<<< Updated upstream
 // 4 cruds
 var personagemRouter = require('./routes/personagemIndex');
 var jogadorRouter = require('./routes/jogadorIndex');
 var mestreRouter = require('./routes/mestreIndex');
 var animalRouter = require('./routes/animalIndex');
 
-=======
-var indexRouter = require('./routes/index');
-var rotaUsuarios = require('./routes/users');
-var rotaLogin = require('./routes/login');
->>>>>>> Stashed changes
 var app = express();
 
 app.use(express.json());
 app.use('/', routes);
 
-<<<<<<< Updated upstream
-=======
-//Usuário
-app.use('/usuarios', rotaUsuarios);
-
-//Login
-app.use('/', rotaLogin);
-
->>>>>>> Stashed changes
 app.use(logger('dev'));
 
 app.use(express.urlencoded({ extended: false }));
