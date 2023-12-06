@@ -11,11 +11,25 @@ var jogadorRouter = require('./routes/jogadorIndex');
 var mestreRouter = require('./routes/mestreIndex');
 var animalRouter = require('./routes/animalIndex');
 
+=======
+var indexRouter = require('./routes/index');
+//var rotaUsuarios = require('./routes/users');
+v//ar rotaLogin = require('./routes/login');
+>>>>>>> Stashed changes
 var app = express();
 
 app.use(express.json());
 app.use('/', routes);
 
+<<<<<<< Updated upstream
+=======
+//Usuário
+app.use('/usuarios', rotaUsuarios);
+
+//Login
+app.use('/', rotaLogin);
+
+>>>>>>> Stashed changes
 app.use(logger('dev'));
 
 app.use(express.urlencoded({ extended: false }));
