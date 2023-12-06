@@ -12,10 +12,17 @@ var jogadorRouter = require('./routes/jogadorIndex');
 var mestreRouter = require('./routes/mestreIndex');
 var animalRouter = require('./routes/animalIndex');
 
+<<<<<<< Updated upstream
 =======
 var indexRouter = require('./routes/index');
 //var rotaUsuarios = require('./routes/users');
 v//ar rotaLogin = require('./routes/login');
+>>>>>>> Stashed changes
+=======
+
+var rotaUsuarios = require('./routes/users');
+var rotaLogin = require('./routes/login');
+
 >>>>>>> Stashed changes
 var app = express();
 
