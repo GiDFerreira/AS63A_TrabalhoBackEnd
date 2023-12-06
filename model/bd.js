@@ -85,6 +85,31 @@ const AnimalModel = sequelize.define('Animal', {
   }
 })
 
+const UsuarioModel = sequelize.define('Usuario', {
+  idUser: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
+  },
+
+  email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+  },
+
+  senha: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  adminTrue: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+    allowNull: false,
+  },
+
+});
+
 sequelize.sync({ force: true })
   .then(() => {
     console.log('Modelos sincronizados com o banco de dados.');
@@ -96,6 +121,7 @@ sequelize.sync({ force: true })
   PersonagemModel.belongsTo(JogadorModel)
   MestreModel.hasMany(PersonagemModel)
   AnimalModel.belongsTo(PersonagemModel)
+  UsuarioModel.belongsTo(UsuarioModel)
 
   module.exports = {
     sequelize: sequelize,
@@ -103,4 +129,5 @@ sequelize.sync({ force: true })
     MestreModel: MestreModel,
     JogadorModel: JogadorModel,
     AnimalModel: AnimalModel,
+    UsuarioModel: UsuarioModel,
   };
