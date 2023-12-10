@@ -19,7 +19,6 @@ var rotaUsuarios = require('./routes/users');
 var rotaLogin = require('./routes/login');
 
 
-
 var app = express();
 
 app.use(express.json());
@@ -42,6 +41,12 @@ app.use('/personagem', personagemRouter);
 app.use('/jogador', jogadorRouter);
 app.use('/mestre', mestreRouter);
 app.use('/animal', animalRouter);
+
+// swagger
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_doc.json')
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
