@@ -19,7 +19,7 @@ var rotaUsuarios = require('./routes/users');
 var rotaLogin = require('./routes/login');
 
 
->>>>>>> Gio
+
 var app = express();
 
 app.use(express.json());
