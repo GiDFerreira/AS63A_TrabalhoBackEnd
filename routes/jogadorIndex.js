@@ -3,6 +3,13 @@ const router = express.Router();
 const JogadorService = require('../model/jogador');
 const autenticacao = require('../helpers/autenticacao');
 
+// rota install
+const {sequelize} = require('../model/bd')
+const PersonagemService = require('../model/personagem');
+const AnimalService = require('../model/animal');
+const UsuarioService = require('../model/usuario');
+
+
 
 //Install
 router.get('/install', async function(req, res, next) {
@@ -15,7 +22,7 @@ router.get('/install', async function(req, res, next) {
     });
     
 
-    let personagem = await PersonagemService.novoPersonagem({
+    let personagem = await PersonagemService.criarPersonagem({
       nome: "Eldana",
       idade: "123",
       raca: "Elfo",
@@ -24,20 +31,16 @@ router.get('/install', async function(req, res, next) {
       habilidadeEspecial: "Magia acarna",
     });
 
-    let animal = await AnimalService.novoAnimal({
+    let animal = await AnimalService.criarAnimal({
       nome: "Filó, a toupeira",
       vida: "12",
     });
 
-    let usuario = await UsuarioService.novoUsuario({
+    let usuario = await UsuarioService.criarUsuario({
       email: "HelenaC@email.com",
       senha: "lelena123",
       adminTrue: true,
     });
-
-    jogador.addPersonagem(personagem);
-    personagem.addAnimal(animal);
-    usuario.addJogador(jogador);
 
     //Rogério Borges
     let jogador1 = await JogadorService.criarJogador({
@@ -45,7 +48,7 @@ router.get('/install', async function(req, res, next) {
       experiencia: "Expert",
     });
     
-    let personagem1 = await PersonagemService.novoPersonagem({
+    let personagem1 = await PersonagemService.criarPersonagem({
       nome: "Ton, o Grande",
       idade: "30",
       raca: "Halfling",
@@ -54,14 +57,11 @@ router.get('/install', async function(req, res, next) {
       habilidadeEspecial: "Astúcia Ladina",
     });
     
-    let usuario1 = await UsuarioService.novoUsuario({
+    let usuario1 = await UsuarioService.criarUsuario({
       email: "RogérioB@email.com",
       senha: "rogerio123",
       adminTrue: false,
     });
-    
-    jogador1.addPersonagem(personagem1);
-    usuario1.addJogador(jogador1);
     
     //João Vitor Lombardo
     let jogador2 = await JogadorService.criarJogador({
@@ -69,7 +69,7 @@ router.get('/install', async function(req, res, next) {
       experiencia: "Pouca",
     });
     
-    let personagem2 = await PersonagemService.novoPersonagem({
+    let personagem2 = await PersonagemService.criarPersonagem({
       nome: "Lorenzo, o Sábio",
       idade: "42",
       raca: "Humano",
@@ -78,14 +78,11 @@ router.get('/install', async function(req, res, next) {
       habilidadeEspecial: "Conhecimento Arcano",
     });
     
-    let usuario2 = await UsuarioService.novoUsuario({
+    let usuario2 = await UsuarioService.criarUsuario({
       email: "JoaoL@email.com",
       senha: "joao123",
       adminTrue: false,
     });
-    
-    jogador2.addPersonagem(personagem2);
-    usuario2.addJogador(jogador2);
     
     //Gabriella Robson
     let jogador3 = await JogadorService.criarJogador({
@@ -93,7 +90,7 @@ router.get('/install', async function(req, res, next) {
       experiencia: "Aventureira",
     });
     
-    let personagem3 = await PersonagemService.novoPersonagem({
+    let personagem3 = await PersonagemService.criarPersonagem({
       nome: "Drakar, a Flamejante",
       idade: "25",
       raca: "Draconato",
@@ -102,14 +99,11 @@ router.get('/install', async function(req, res, next) {
       habilidadeEspecial: "Sopro de Fogo Divino",
     });
     
-    let usuario3 = await UsuarioService.novoUsuario({
+    let usuario3 = await UsuarioService.criarUsuario({
       email: "GabriellaR@email.com",
       senha: "gabriella123",
       adminTrue: true,
     });
-    
-    jogador3.addPersonagem(personagem3);
-    usuario3.addJogador(jogador3);
     
     //Breno Alencar
     let jogador4 = await JogadorService.criarJogador({
@@ -117,7 +111,7 @@ router.get('/install', async function(req, res, next) {
       experiencia: "Aventureiro",
     });
     
-    let personagem4 = await PersonagemService.novoPersonagem({
+    let personagem4 = await PersonagemService.criarPersonagem({
       nome: "Goruk, o Destemido",
       idade: "28",
       raca: "Anão",
@@ -126,20 +120,16 @@ router.get('/install', async function(req, res, next) {
       habilidadeEspecial: "Força Destruidora",
     });
     
-    let animal4 = await AnimalService.novoAnimal({
+    let animal4 = await AnimalService.criarAnimal({
       nome: "Rufus, o Lobo",
       vida: "18",
     });
     
-    let usuario4 = await UsuarioService.novoUsuario({
+    let usuario4 = await UsuarioService.criarUsuario({
       email: "BrenoA@email.com",
       senha: "breno123",
       adminTrue: false,
     });
-    
-    jogador4.addPersonagem(personagem4);
-    personagem4.addAnimal(animal4);
-    usuario4.addJogador(jogador4);
 
     res.json({ mensagem: "Instalado com sucesso!!" });
 
