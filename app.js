@@ -4,6 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const routes = require('./routes/personagemIndex');
+require('dotenv').config();
+
+const secret = process.env.SECRET;
+
 
 // 4 cruds
 var personagemRouter = require('./routes/personagemIndex');
@@ -11,11 +15,11 @@ var jogadorRouter = require('./routes/jogadorIndex');
 var mestreRouter = require('./routes/mestreIndex');
 var animalRouter = require('./routes/animalIndex');
 
-=======
-var indexRouter = require('./routes/index');
 var rotaUsuarios = require('./routes/users');
 var rotaLogin = require('./routes/login');
->>>>>>> Stashed changes
+
+
+>>>>>>> Gio
 var app = express();
 
 app.use(express.json());
